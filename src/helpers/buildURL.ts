@@ -57,9 +57,7 @@ export const buildURL = (url: string, params?: any): string => {
 
       url += (url.indexOf(`?`) === -1 ? `?` : `&`) + serializedParams
     }
-
-    return url
   })
 
-  return ``
+  return url
 }

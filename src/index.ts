@@ -2,9 +2,12 @@ import { AxiosRequestConfig } from '../types'
 import { buildURL } from './helpers/buildURL'
 import xhr from './xhr'
 
-const axios = (config: AxiosRequestConfig): void => {
+const axios = (config: AxiosRequestConfig) => {
   processConfig(config)
   xhr(config)
+
+  // const promise = new Promise<any>(() => {})
+  // return promise
 }
 
 const processConfig = (config: AxiosRequestConfig): void => {
