@@ -13,6 +13,7 @@
     "declarationDir": "dist/types",
     "noImplicitReturns": false,
     "outDir": "dist/lib",
+    "suppressImplicitAnyIndexErrors": false,
     "typeRoots": [
       "node_modules/@types"
     ],
