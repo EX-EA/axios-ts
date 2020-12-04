@@ -1,18 +1,24 @@
 import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from '../types'
 import { parseHeaders } from './helpers/headers'
+import { createError } from './helpers/error'
 
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
-  return new Promise((resolve) => {
-    const { url, data = null, method = 'get', params, headers, responseType } = config
+  return new Promise((resolve, reject) => {
+    const { url, data = null, method = 'get', params, headers, responseType, timeout } = config
     const request = new XMLHttpRequest()
 
     if (responseType) {
       request.responseType = responseType
     }
 
+    // Set request timeout in MS
+    if (timeout) {
+      request.timeout = timeout
+    }
+
     request.open(method, url, true)
     request.onreadystatechange = function handleLoad() {
-      if (request.readyState !== 4) {
+      if (request.readyState !== 4 || request.status === 0) {
         return
       }
 
@@ -26,7 +32,14 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
         request,
         config,
       }
-      resolve(response)
+
+      handleResponse(response)
+    }
+    request.onerror = function handleError() {
+      reject(createError(`Network Error`, config, undefined, request))
+    }
+    request.ontimeout = function fn() {
+      reject(createError(`Timeout of ${timeout} ms exceeded`, config, `ECONNABORTED`, request))
     }
 
     Object.keys(headers).forEach((header) => {
@@ -36,6 +49,25 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
         request.setRequestHeader(header, headers[header])
       }
     })
+
     request.send(data)
+
+    const handleResponse = (response: AxiosResponse) => {
+      const { status } = response
+
+      if (status >= 200 && status < 300) {
+        resolve(response)
+      } else {
+        reject(
+          createError(
+            `Request failed with status code ${status}`,
+            config,
+            undefined,
+            request,
+            response
+          )
+        )
+      }
+    }
   })
 }
