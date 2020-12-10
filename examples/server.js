@@ -146,7 +146,6 @@ function registerExtendRouter () {
   })
 
   router.patch('/extend/patch', function (req, res) {
-    console.log('req :>> ', req);
     res.json(req.body)
   })
 

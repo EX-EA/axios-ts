@@ -2,7 +2,13 @@ import { Axios as IAxios, AxiosPromise, AxiosRequestConfig } from '../../types'
 import dispatchRequest from './dispatchRequest'
 
 export default class Axios implements IAxios {
-  request(config: AxiosRequestConfig): AxiosPromise {
+  request(url: string | AxiosRequestConfig, config: AxiosRequestConfig = {}): AxiosPromise {
+    if (typeof url === `string`) {
+      config[`url`] = url
+    } else {
+      config = url
+    }
+
     return dispatchRequest(config)
   }
 
