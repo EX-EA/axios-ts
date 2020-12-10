@@ -1,6 +1,6 @@
-import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from '../types'
-import { parseHeaders } from './helpers/headers'
-import { createError } from './helpers/error'
+import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from '../../types'
+import { parseHeaders } from '../helpers/headers'
+import { createError } from '../helpers/error'
 
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
   return new Promise((resolve, reject) => {
@@ -16,7 +16,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
       request.timeout = timeout
     }
 
-    request.open(method, url, true)
+    request.open(method, url!, true)
     request.onreadystatechange = function handleLoad() {
       if (request.readyState !== 4 || request.status === 0) {
         return
@@ -58,6 +58,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
       if (status >= 200 && status < 300) {
         resolve(response)
       } else {
+        console.log('response :>> ', response)
         reject(
           createError(
             `Request failed with status code ${status}`,
