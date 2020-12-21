@@ -4,7 +4,7 @@ import { createError } from '../helpers/error'
 
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
   return new Promise((resolve, reject) => {
-    const { url, data = null, method = 'get', params, headers, responseType, timeout } = config
+    const { url, data = null, method = 'get', headers, responseType, timeout } = config
     const request = new XMLHttpRequest()
 
     if (responseType) {
@@ -58,7 +58,6 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
       if (status >= 200 && status < 300) {
         resolve(response)
       } else {
-        console.log('response :>> ', response)
         reject(
           createError(
             `Request failed with status code ${status}`,
