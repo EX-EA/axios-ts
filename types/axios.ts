@@ -1,4 +1,4 @@
-type RequestMethod =
+export type RequestMethod =
   | 'post'
   | 'POST'
   | 'delete'

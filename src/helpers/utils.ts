@@ -15,6 +15,7 @@ export const hasOwn = (val: unknown, key: string): val is Object =>
 
 export const forEach = (
   obj: Object | Array<unknown>,
+
   fn: (value: unknown, key?: unknown, obj?: Object | Array<unknown>) => any
 ) => {
   if (isMeaningless(obj)) {
@@ -46,4 +47,32 @@ export const extend = <T, U>(to: T, from: U): T & U => {
   }
 
   return to as T & U
+}
+
+/**
+ *
+ * @param objs obj1, obj2, obj3...
+ */
+export const deepMerge = (...objs: Record<string, any>[]) => {
+  const result = Object.create(null)
+
+  objs.forEach((obj) => {
+    if (obj) {
+      Object.keys(obj).forEach((key) => {
+        const val = obj[key]
+
+        if (isPlainObject(result[key]) && isPlainObject(val)) {
+          result[key] = deepMerge(result[key], val)
+        } else if (isPlainObject(val)) {
+          result[key] = deepMerge(val)
+        } else if (isArray(val)) {
+          result[key] = val.slice()
+        } else {
+          result[key] = val
+        }
+      })
+    }
+  })
+
+  return result
 }
