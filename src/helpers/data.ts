@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'types'
 import { isPlainObject } from './utils'
 
 export const transformRequest = (data: any): any => {
