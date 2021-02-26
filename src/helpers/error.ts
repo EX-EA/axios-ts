@@ -22,6 +22,7 @@ export class AxiosError extends Error {
     this.response = response
     this.isAxiosError = true
 
+    /** ts bug */
     Object.setPrototypeOf(this, AxiosError.prototype)
   }
 }
