@@ -1,5 +1,10 @@
 import { isMeaningless, isDate, isPlainObject, isArray } from './utils'
 
+interface URLOrigin {
+  protocol: string
+  host: string
+}
+
 const encode = (val: string): string => {
   return encodeURIComponent(val)
     .replace(/%40/g, `@`)
@@ -60,4 +65,24 @@ export const buildURL = (url: string, params?: any): string => {
   })
 
   return url
+}
+
+const urlParsingNode = document.createElement(`a`)
+
+const resolveURL = (url: string): URLOrigin => {
+  urlParsingNode.setAttribute(`href`, url)
+  const { protocol, host } = urlParsingNode
+
+  return {
+    protocol,
+    host,
+  }
+}
+
+const originURL = resolveURL(window.location.href)
+
+export const isURLSameOrigin = (requestURL: string): boolean => {
+  let parsed = resolveURL(requestURL)
+
+  return parsed.protocol === originURL.protocol && parsed.host === originURL.host
 }
