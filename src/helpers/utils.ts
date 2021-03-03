@@ -6,6 +6,9 @@ export const isDate = (val: any): val is Date => val instanceof Date
 
 export const isObject = (val: unknown): val is Object => val !== null && typeof val === 'object'
 
+export const isFormData = (val: unknown): val is FormData =>
+  typeof val !== `undefined` && val instanceof FormData
+
 export const isPlainObject = (val: unknown): val is Object => toString(val) === `[object Object]`
 
 export const isArray = <T = any>(val: unknown): val is Array<T> => Array.isArray(val)
