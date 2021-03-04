@@ -95,8 +95,10 @@
     "body-parser": "^1.19.0",
     "colors": "^1.4.0",
     "commitizen": "^4.2.2",
+    "connect-multiparty": "^2.2.0",
     "coveralls": "^3.1.0",
     "cross-env": "^7.0.2",
+    "css-loader": "^5.1.1",
     "cz-conventional-changelog": "^3.3.0",
     "express": "^4.17.1",
     "husky": "^4.3.0",
@@ -116,6 +118,7 @@
     "rollup-plugin-typescript2": "^0.29.0",
     "semantic-release": "^17.3.0",
     "shelljs": "^0.8.4",
+    "style-loader": "^2.0.0",
     "travis-deploy-once": "^5.0.9",
     "ts-jest": "^26.4.4",
     "ts-loader": "^8.0.11",
@@ -128,8 +131,10 @@
   },
   "dependencies": {
     "@types/cookie-parser": "^1.4.2",
+    "@types/nprogress": "^0.2.0",
     "@types/qs": "^6.9.5",
     "cookie-parser": "^1.4.5",
+    "nprogress": "^0.2.0",
     "qs": "^6.9.6"
   }
 }
