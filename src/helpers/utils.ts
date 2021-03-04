@@ -13,6 +13,9 @@ export const isPlainObject = (val: unknown): val is Object => toString(val) === 
 
 export const isArray = <T = any>(val: unknown): val is Array<T> => Array.isArray(val)
 
+export const isURLSearchParams = (val: unknown): val is URLSearchParams =>
+  typeof val !== `undefined` && val instanceof URLSearchParams
+
 export const hasOwn = (val: unknown, key: string): val is Object =>
   Object.prototype.hasOwnProperty.call(val, key)
 
