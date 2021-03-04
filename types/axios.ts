@@ -28,6 +28,7 @@ export interface AxiosRequestConfig {
   xsrfHeaderName?: string
   onUploadProgress?: (e: ProgressEvent) => void
   onDownloadProgress?: (e: ProgressEvent) => void
+  auth?: AxiosBasicCredential
 
   [propName: string]: any
 }
@@ -133,4 +134,9 @@ export interface Cancel {
 
 export interface CancelStatic {
   new (message?: string): Cancel
+}
+
+export interface AxiosBasicCredential {
+  username: string
+  password: string
 }
