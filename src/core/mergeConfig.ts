@@ -4,9 +4,11 @@ import { AxiosRequestConfig } from 'types'
 const defaultStrategy = (val1: unknown, val2: unknown) => {
   return typeof val2 !== `undefined` ? val2 : val1
 }
-const getVal2Strategy = (val1: unknown, val2: unknown) => {
+
+const getVal2Strategy = (_val1: unknown, val2: unknown) => {
   return typeof val2 !== `undefined` && val2
 }
+
 const deepMergeStrat = (val1: unknown, val2: unknown) => {
   if (isPlainObject(val2)) {
     return deepMerge(val1 as any, val2)
