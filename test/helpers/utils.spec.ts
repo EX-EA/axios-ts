@@ -6,6 +6,8 @@ import {
   extend,
   deepMerge,
   isMeaningless,
+  hasOwn,
+  forEach,
 } from '../../src/helpers/utils'
 
 describe('helpers:util', () => {
@@ -124,5 +126,33 @@ describe('helpers:util', () => {
     //   expect(deepMerge(null, { foo: 123 })).toEqual({ foo: 123 })
     //   expect(deepMerge({ foo: 123 }, null)).toEqual({ foo: 123 })
     // })
+  })
+
+  describe('hasXX', () => {
+    test('should has a property with the specified name.', () => {
+      const person = { age: 18 }
+
+      expect(hasOwn(person, 'age')).toBeTruthy()
+    })
+  })
+
+  describe('forEach', () => {
+    test('should traverse key in array and obj', () => {
+      const arr = [1, 2, 4]
+      const person = { age: 18, name: 'kan' }
+      let sum = 0
+
+      forEach(arr, (value) => {
+        sum += value as number
+      })
+      forEach(person, (_value, key) => {
+        if (key === 'name') {
+          person[key] = 'chen'
+        }
+      })
+
+      expect(sum).toBe(7)
+      expect(person.name).toBe('chen')
+    })
   })
 })

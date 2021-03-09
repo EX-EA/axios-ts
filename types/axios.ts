@@ -7,6 +7,8 @@ export type RequestMethod =
   | 'PUT'
   | 'get'
   | 'GET'
+  | 'patch'
+  | 'PATCH'
   | 'head'
   | 'Head'
   | 'options'

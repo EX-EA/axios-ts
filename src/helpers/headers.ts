@@ -10,10 +10,10 @@ export const normalizeHeaderName = (headers: any, normalizedName: string) => {
   })
 }
 
-export const processHeaders = (headers: any, data: any) => {
-  if (!headers) {
-    return
-  }
+export const processHeaders = (headers: Record<string, unknown>, data: any) => {
+  // if (!headers) {
+  //   return
+  // }
 
   normalizeHeaderName(headers, 'Content-Type')
 
@@ -34,15 +34,13 @@ export const parseHeaders = (headers: string) => {
   }
 
   forEach(headers.split('\r\n'), (line) => {
-    let [key, val] = (line as string).split(`:`)
-    key = key.trim()
+    let [key, ...vals] = (line as string).split(`:`)
+    key = key.trim().toLowerCase()
     if (!key) {
       return
     }
 
-    if (val) {
-      val = val.trim()
-    }
+    let val = vals.join(':').trim()
 
     parsed[key] = val
   })
