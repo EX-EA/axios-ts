@@ -32,14 +32,15 @@ export default class Axios implements IAxios {
     }
   }
 
-  request(url: any, config?: any): AxiosPromise {
+  request(url: any, config: any = {}): AxiosPromise {
     if (typeof url === `string`) {
-      config[`url`] = url
+      config.url = url
     } else {
       config = url
     }
 
     config = mergeConfig(this.defaults, config)
+    config.method = config.method.toLowerCase()
 
     // interceptors 链表结构
     /**

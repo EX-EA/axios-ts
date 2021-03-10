@@ -1,4 +1,4 @@
-import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from '../../types'
+import { AxiosError, AxiosPromise, AxiosRequestConfig, AxiosResponse } from '../../types'
 import { buildURL, combineURL, isAbsoluteURL } from '../helpers/url'
 import xhr from './xhr'
 import { flattenHeaders } from '../helpers/headers'
@@ -7,9 +7,18 @@ import transform from './transform'
 export default function dispatchRequest(config: AxiosRequestConfig): AxiosPromise {
   throwIfCancellationRequested(config)
   processConfig(config)
-  return xhr(config).then((res) => {
-    return transformResponseData(res)
-  })
+  return xhr(config).then(
+    (res) => {
+      return transformResponseData(res)
+    },
+    (e: AxiosError) => {
+      if (e && e.response) {
+        e.response = transformResponseData(e.response)
+      }
+
+      return Promise.reject(e)
+    }
+  )
 }
 
 const processConfig = (config: AxiosRequestConfig): void => {

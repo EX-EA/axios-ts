@@ -15,5 +15,6 @@ export const transformResponse = (data: unknown): any => {
       /* Ignore */
     }
   }
+
   return data
 }

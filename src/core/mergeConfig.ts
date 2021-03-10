@@ -1,4 +1,4 @@
-import { isPlainObject, deepMerge } from '@/helpers/utils'
+import { isPlainObject, deepMerge } from '../helpers/utils'
 import { AxiosRequestConfig } from 'types'
 
 const defaultStrategy = (val1: unknown, val2: unknown) => {
@@ -22,8 +22,8 @@ const deepMergeStrat = (val1: unknown, val2: unknown) => {
 }
 
 const stratMap = Object.create(null)
-const valueFromConfig2Key = [`url`, `method`, `data`]
-const mergeDeepPropertiesKeys = [`headers`, `auth`, `proxy`, `params`]
+const valueFromConfig2Key = [`url`, `params`, `data`]
+const mergeDeepPropertiesKeys = [`headers`, `auth`]
 
 /**
  * stratMap = {

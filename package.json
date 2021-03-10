@@ -135,6 +135,7 @@
   },
   "dependencies": {
     "@types/cookie-parser": "^1.4.2",
+    "@types/jasmine-ajax": "^3.3.2",
     "@types/nprogress": "^0.2.0",
     "@types/qs": "^6.9.5",
     "atob": "^2.1.2",

@@ -1,9 +1,9 @@
 import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from '../../types'
 import { parseHeaders } from '../helpers/headers'
 import { createError } from '../helpers/error'
-import { isURLSameOrigin } from '@/helpers/url'
-import cookie from '@/helpers/cookie'
-import { isFormData } from '@/helpers/utils'
+import { isURLSameOrigin } from '../helpers/url'
+import cookie from '../helpers/cookie'
+import { isFormData } from '../helpers/utils'
 
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
   return new Promise((resolve, reject) => {
@@ -25,7 +25,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
     } = config
     const request = new XMLHttpRequest()
 
-    request.open(method, url!, true)
+    request.open(method.toUpperCase(), url!, true)
 
     configureRequest()
     addEvents()
