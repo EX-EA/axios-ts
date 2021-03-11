@@ -6,7 +6,9 @@ const defaultStrategy = (val1: unknown, val2: unknown) => {
 }
 
 const getVal2Strategy = (_val1: unknown, val2: unknown) => {
-  return typeof val2 !== `undefined` && val2
+  if (typeof val2 !== 'undefined') {
+    return val2
+  }
 }
 
 const deepMergeStrat = (val1: unknown, val2: unknown) => {
@@ -41,10 +43,9 @@ mergeDeepPropertiesKeys.forEach((key) => {
 
 export default function mergeConfig(
   config1: AxiosRequestConfig,
-  config2?: AxiosRequestConfig
+  config2: AxiosRequestConfig = {}
 ): AxiosRequestConfig {
   let config = Object.create(null)
-  config2 = config2 || {}
 
   const mergeField = (key: string) => {
     const strategy = stratMap[key] || defaultStrategy
