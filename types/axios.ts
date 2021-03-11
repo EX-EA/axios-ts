@@ -43,7 +43,7 @@ export interface AxiosResponse<T = any> {
   statusText: string
   data: T
   headers: any
-  request: XMLHttpRequest
+  request: any
   config: AxiosRequestConfig
 }
 
@@ -70,8 +70,8 @@ export interface Axios {
   options<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
   head<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
   post<T = any>(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise<T>
-  put<T = any>(url: string, data: any, config?: AxiosRequestConfig): AxiosPromise<T>
-  patch<T = any>(url: string, data: any, config?: AxiosRequestConfig): AxiosPromise<T>
+  put<T = any>(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise<T>
+  patch<T = any>(url: string, data?: any, config?: AxiosRequestConfig): AxiosPromise<T>
 
   getUri(config?: AxiosRequestConfig): string
 }

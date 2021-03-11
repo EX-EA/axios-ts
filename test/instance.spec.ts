@@ -1,4 +1,5 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from '../src/index'
+import axios from '../src/index'
+import { AxiosRequestConfig, AxiosResponse } from '../types'
 import { getAjaxRequest } from './helper'
 
 describe('instance', () => {
