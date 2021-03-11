@@ -36,7 +36,7 @@ describe('requests', () => {
   })
 
   // TODO: MockAjax not install. github cant visit
-  // test('should reject on network errors', () => {
+  // test.only('should reject on network errors', () => {
   //   const resolveSpy = jest.fn((res: AxiosResponse) => {
   //     return res
   //   })

@@ -1,6 +1,7 @@
-import axios, { AxiosTransformer } from '../src/index'
+import axios from '../src/index'
+import { AxiosTransformer } from '../types'
 import { getAjaxRequest } from './helper'
-import { deepMerge } from '../src/helpers/util'
+import { deepMerge } from '../src/helpers/utils'
 
 describe('defaults', () => {
   beforeEach(() => {

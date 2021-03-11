@@ -103,7 +103,7 @@ export interface RejectFn {
 }
 
 export interface AxiosTransformer {
-  (data: any, headers: any): any
+  (data: any, headers?: any): any
 }
 
 export interface CancelToken {

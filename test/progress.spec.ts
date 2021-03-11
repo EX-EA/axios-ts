@@ -29,7 +29,7 @@ describe('progress', () => {
 
     axios('/foo', { onUploadProgress: progressSpy })
 
-    return getAjaxRequest().then((request) => {
+    return getAjaxRequest().then((_request) => {
       // Jasmine AJAX doesn't trigger upload events. Waiting for jest-ajax fix
       // expect(progressSpy).toHaveBeenCalled()
     })

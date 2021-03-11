@@ -1,4 +1,5 @@
-import axios, { AxiosResponse, AxiosTransformer } from '../src/index'
+import axios from '../src/index'
+import { AxiosResponse, AxiosTransformer } from '../types'
 import { getAjaxRequest } from './helper'
 
 describe('transform', () => {

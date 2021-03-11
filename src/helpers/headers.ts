@@ -1,7 +1,7 @@
 import { isPlainObject, forEach, deepMerge } from './utils'
 import { RequestMethod } from 'types'
 
-export const normalizeHeaderName = (headers: any, normalizedName: string) => {
+export const normalizeHeaderName = (headers: any = {}, normalizedName: string) => {
   Object.keys(headers).forEach((header) => {
     if (header !== normalizedName && header.toUpperCase() === normalizedName.toUpperCase()) {
       headers[normalizedName] = headers[header]
